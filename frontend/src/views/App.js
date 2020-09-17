@@ -47,7 +47,7 @@ class App extends Component {
         }
         if (this.state.configWindowOpen) {
             modal = <Config onHide={() => this.setState({configWindowOpen: false})}
-						onDone={() => this.setState({configDone: true})}/>;
+						onDone={() => this.setState({configDone: true})} configDone={this.state.configDone} />;
         }
         if (this.state.uploadWindowOpen) {
             modal = <Upload onHide={() => this.setState({uploadWindowOpen: false}) }/>;

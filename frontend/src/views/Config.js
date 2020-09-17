@@ -112,7 +112,9 @@ class Config extends Component {
             </tr>
         );
 
+		let test = "";
 
+		if( ! this.props.configDone){
 
         return (
 			<>
@@ -242,6 +244,62 @@ class Config extends Component {
             </Modal>
 			</>
         );
+		} else {
+
+        return (
+			<>
+            <Modal
+                {...this.props}
+                show="true"
+                size="lg"
+                aria-labelledby="services-dialog"
+                centered
+            >
+                <Modal.Header>
+                    <Modal.Title id="services-dialog">
+                        ~/.config
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Container>
+                        <Row>
+
+									<ButtonGroup toggle className="mb-2">
+									<ToggleButton
+									  type="checkbox"
+									  variant="secondary"
+									  checked={this.state.auth_required}
+									  value={this.state.auth_required}
+									  onChange={() => this.authRequiredChanged()}
+									>
+									  Authentication
+									</ToggleButton>
+								  </ButtonGroup>
+
+
+                        </Row>
+                        <Row>
+							<div class="error">
+							<b>
+								{this.state.errors
+									.split('\n').map((item, key) => {
+									  return <span key={key}>{item}<br/></span>})
+								}
+							</b>
+							</div>
+                        </Row>
+
+                    </Container>
+                </Modal.Body>
+                <Modal.Footer className="dialog-footer">
+					<Button variant="green" onClick={() => this.setup()}>set</Button>
+                    <Button variant="red" onClick={this.props.onHide}>close</Button>
+                </Modal.Footer>
+            </Modal>
+			</>
+			);
+		}
+
     }
 }
 
